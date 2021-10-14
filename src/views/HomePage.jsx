@@ -1,8 +1,10 @@
+import Layout from '../components/Layout';
+
 const HomePage = () => {
   return (
-    <div>
+    <Layout>
       <h2 className="text-2xl">Home</h2>
-    </div>
+    </Layout>
   );
 }
 
