@@ -1,21 +1,14 @@
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import HomePage from './views/HomePage';
+import PostList from './views/PostList';
+
 const App = () => {
-  return (
-    <div className="min-h-screen bg-red-100">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+	return (
+		<Router>
+			<Route path="/" exact component={HomePage} />
+			<Route path="/posts" exact component={PostList} />
+		</Router>
+	);
+};
 
 export default App;
