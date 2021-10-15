@@ -10,7 +10,7 @@ export const logOut = () => {
   }
 }
 
-export const getPost = (data) => {
+export const setPostList = (data) => {
   return {
     type: "GET_POST_LIST",
     payload: data,
@@ -20,6 +20,13 @@ export const getPost = (data) => {
 export const setUserList = (data) => {
   return {
     type: "SET_USER_LIST",
-    payload: data
+    payload: data,
+  }
+}
+
+export const setAlbumList = (data) => {
+  return {
+    type: "SET_ALBUM_LIST",
+    payload: data,
   }
 }
