@@ -1,4 +1,4 @@
-const UserLogInReducer = (state = false, action) => {
+export const UserLogInReducer = (state = false, action) => {
   switch (action.type) {
     case "USER_LOG_IN":
       return true;  
@@ -9,4 +9,11 @@ const UserLogInReducer = (state = false, action) => {
   }
 }
 
-export default UserLogInReducer
+export const UserListReducer = (state = [], action) => {
+  switch (action.type) {
+    case "SET_USER_LIST":
+      return action.payload;
+    default:
+      return state;
+  }
+}

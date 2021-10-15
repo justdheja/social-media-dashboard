@@ -1,11 +1,12 @@
 import Layout from '../components/Layout';
+import UserList from '../components/UserList';
 
 const UsersPage = () => {
   return (
     <Layout>
-      Users
+      <UserList />
     </Layout>
   );
 }
- 
+
 export default UsersPage;

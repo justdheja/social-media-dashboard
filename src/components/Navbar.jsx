@@ -34,7 +34,7 @@ const Navbar = () => {
 				</div>
 
 				<div className="items-center md:flex">
-					<div className="flex flex-col md:flex-row md:mx-6">
+					<div className="flex flex-col items-center md:flex-row md:mx-6">
 						<NavLink
 							className="my-1 text-sm font-medium m-auto hover:text-green-500 md:mx-4 md:my-0"
 							activeClassName="my-1 text-sm font-medium m-auto text-green-700 font-bold"
@@ -47,16 +47,24 @@ const Navbar = () => {
 							className="my-1 text-sm font-medium m-auto hover:text-green-500 md:mx-4 md:my-0"
 							activeClassName="my-1 text-sm font-medium m-auto text-green-700 font-bold"
 							exact
-							to="/posts"
+							to="/album"
 						>
-							Posts
+							Album
+						</NavLink>
+						<NavLink
+							className="my-1 text-sm font-medium m-auto hover:text-green-500 md:mx-4 md:my-0"
+							activeClassName="my-1 text-sm font-medium m-auto text-green-700 font-bold"
+							exact
+							to="/users"
+						>
+							Users
 						</NavLink>
 						{isLoggedIn ? (
 							<button className="bg-green-800 p-1 rounded m-auto" onClick={() => dispatch(logOut())}>
 								Log Out
 							</button>
 						) : (
-							<button className="bg-green-800 p-1 rounded m-auto" onClick={() => dispatch(logIn())}>
+							<button className="bg-green-600 p-1 rounded m-auto shadow-lg" onClick={() => dispatch(logIn())}>
 								Log In
 							</button>
 						)}
