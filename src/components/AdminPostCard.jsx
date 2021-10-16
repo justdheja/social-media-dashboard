@@ -36,7 +36,9 @@ const AdminPostCard = ({ post, profile }) => {
 
   const deletePost = (id) => {
     const newPostList = postList.filter(post => post.id !== id)
+    const newCommentList = commentList.filter(comment => comment.postId !== id)
     dispatch(setPostList(newPostList))
+    dispatch(setCommentList(newCommentList))
   }
 
   return (
