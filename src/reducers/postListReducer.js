@@ -1,4 +1,4 @@
-const PostListReducer = (state = [], action) => {
+export const PostListReducer = (state = [], action) => {
   switch (action.type){
     case "GET_POST_LIST":
       return action.payload;
@@ -7,4 +7,11 @@ const PostListReducer = (state = [], action) => {
   }
 }
 
-export default PostListReducer;
+export const CommentListReducer = (state = [], action) => {
+  switch (action.type) {
+    case "SET_COMMENT_LIST":
+      return action.payload;
+    default:
+      return state;
+  }
+}

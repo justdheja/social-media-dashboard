@@ -47,14 +47,6 @@ const Navbar = () => {
 							className="my-1 text-sm font-medium m-auto hover:text-green-500 md:mx-4 md:my-0"
 							activeClassName="my-1 text-sm font-medium m-auto text-green-700 font-bold"
 							exact
-							to="/album"
-						>
-							Album
-						</NavLink>
-						<NavLink
-							className="my-1 text-sm font-medium m-auto hover:text-green-500 md:mx-4 md:my-0"
-							activeClassName="my-1 text-sm font-medium m-auto text-green-700 font-bold"
-							exact
 							to="/users"
 						>
 							Users

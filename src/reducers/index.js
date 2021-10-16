@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { UserListReducer, UserLogInReducer } from './userReducer';
-import PostListReducer from './postListReducer';
+import { CommentListReducer, PostListReducer } from './postListReducer';
 import { AlbumListReducer, PhotoListReducer } from './photoReducer';
 
 export const reducers = combineReducers({
@@ -9,4 +9,5 @@ export const reducers = combineReducers({
   postList: PostListReducer,
   albumList: AlbumListReducer,
   photoList: PhotoListReducer,
+  commentList: CommentListReducer,
 });

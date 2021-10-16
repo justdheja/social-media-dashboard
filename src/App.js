@@ -6,7 +6,7 @@ import HomePage from './views/HomePage';
 import UsersPage from './views/UsersPage';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { setAlbumList, setPhotoList, setPostList, setUserList } from './actions';
+import { setAlbumList, setCommentList, setPhotoList, setPostList, setUserList } from './actions';
 import UserDetailPage from './views/UserDetailPage';
 import AlbumDetailPage from './views/AlbumDetailPage';
 
@@ -30,6 +30,10 @@ const App = () => {
 
 		await axios.get('https://jsonplaceholder.typicode.com/photos')
 			.then(res => dispatch(setPhotoList(res.data)))
+			.catch(err => console.log(err))
+
+		await axios.get('https://jsonplaceholder.typicode.com/comments')
+			.then(res => dispatch(setCommentList(res.data)))
 			.catch(err => console.log(err))
 
 		setLoading(false)

@@ -37,3 +37,10 @@ export const setPhotoList = (data) => {
     payload: data,
   }
 }
+
+export const setCommentList = (data) => {
+  return {
+    type: "SET_COMMENT_LIST",
+    payload: data,
+  }
+}
