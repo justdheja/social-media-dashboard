@@ -30,3 +30,10 @@ export const setAlbumList = (data) => {
     payload: data,
   }
 }
+
+export const setPhotoList = (data) => {
+  return {
+    type: "SET_PHOTO_LIST",
+    payload: data,
+  }
+}

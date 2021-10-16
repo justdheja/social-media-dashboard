@@ -7,7 +7,7 @@ import AlbumPage from './views/AlbumPage';
 import UsersPage from './views/UsersPage';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
-import { setAlbumList, setPostList, setUserList } from './actions';
+import { setAlbumList, setPhotoList, setPostList, setUserList } from './actions';
 import UserDetailPage from './views/UserDetailPage';
 import Layout from './components/Layout';
 
@@ -17,9 +17,8 @@ const App = () => {
 	useEffect(async () => {
 		setLoading(true)
 		
-		await axios.get('https://jsonplaceholder.typicode.com/users').then((res) => {
-			dispatch(setUserList(res.data));
-		});
+		await axios.get('https://jsonplaceholder.typicode.com/users')
+			.then((res) => dispatch(setUserList(res.data)));
 
 		await axios
 			.get('https://jsonplaceholder.typicode.com/posts')
@@ -28,6 +27,10 @@ const App = () => {
 
 		await axios.get('https://jsonplaceholder.typicode.com/albums')
 			.then((res) => dispatch(setAlbumList(res.data)))
+			.catch(err => console.log(err))
+
+		await axios.get('https://jsonplaceholder.typicode.com/photos')
+			.then(res => dispatch(setPhotoList(res.data)))
 			.catch(err => console.log(err))
 
 		setLoading(false)
@@ -45,10 +48,10 @@ const App = () => {
 			);
 		} else {
 			return (
-				<div className="min-h-screen bg-gray-800">
-					<div className="font-semibold flex justify-center items-center animate-bounce">Please Wait...</div>
+				<div className="min-h-screen bg-gray-800 text-white flex justify-center items-center">
+					<div className="font-semibold animate-bounce">Please Wait...</div>
 				</div>
-			)
+			);
 		}
 	}
 };
