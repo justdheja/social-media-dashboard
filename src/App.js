@@ -9,6 +9,7 @@ import axios from 'axios';
 import { setAlbumList, setCommentList, setPhotoList, setPostList, setUserList } from './actions';
 import UserDetailPage from './views/UserDetailPage';
 import AlbumDetailPage from './views/AlbumDetailPage';
+import PostDetailPage from './views/PostDetailPage';
 
 const App = () => {
 	const [loading, setLoading] = useState(false)
@@ -47,6 +48,7 @@ const App = () => {
 					<Route path="/users" exact component={UsersPage} />
 					<Route path="/users/:id" exact component={UserDetailPage} />
 					<Route path="/users/:userId/albums/:albumId" exact component={AlbumDetailPage} />
+					<Route path="/users/:userId/posts/:postId" exact component={PostDetailPage} />
 				</Router>
 			);
 		} else {
