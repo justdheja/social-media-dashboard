@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-target-blank */
 const UserProfileCard = ({ profile }) => {
   return (
 		<div className="bg-white max-h-56 rounded p-2 text-black text-center space-y-2">

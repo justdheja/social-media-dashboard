@@ -17,7 +17,7 @@ const UserDetailPage = () => {
   const [albums, setAlbums] = useState([])
 
 	useEffect(() => {
-		userList.map((user) => {
+		userList.forEach((user) => {
 			if (user.id === parseInt(id)) {
 				setProfile(user);
 			}

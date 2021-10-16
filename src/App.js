@@ -3,7 +3,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './views/HomePage';
-import AlbumPage from './views/AlbumPage';
 import UsersPage from './views/UsersPage';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -41,7 +40,6 @@ const App = () => {
 			return (
 				<Router>
 					<Route path="/" exact component={HomePage} />
-					<Route path="/album" exact component={AlbumPage} />
 					<Route path="/users" exact component={UsersPage} />
 					<Route path="/users/:id" exact component={UserDetailPage} />
 					<Route path="/users/:userId/albums/:albumId" exact component={AlbumDetailPage} />
