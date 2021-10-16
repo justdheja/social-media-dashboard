@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router';
 import { Link } from 'react-router-dom';
 import { setCommentList } from '../actions';
+import CommentCard from '../components/CommentCard';
 import Layout from '../components/Layout';
 
 const PostDetailPage = () => {
 	const { userId, postId } = useRouteMatch().params;
-	const dispatch = useDispatch()
+	const dispatch = useDispatch();
 	const [profile, setProfile] = useState({});
 	const [post, setPost] = useState({});
 	const [comments, setComments] = useState([]);
@@ -29,19 +30,23 @@ const PostDetailPage = () => {
 	}, [commentList, postId, postList, userId, userList]);
 
 	const postComment = () => {
-		setAdminComment('')
-		const tmpCommentList = [
-			...commentList,
-			{
-				postId: parseInt(postId),
-				id: commentList.length + 1,
-				name: isLoggedIn.AdminInfo.email,
-				email: isLoggedIn.AdminInfo.email,
-				body: adminComment,
-			},
-		];
-		dispatch(setCommentList(tmpCommentList));
-	}
+		if (adminComment) {
+			setAdminComment('');
+			const tmpCommentList = [
+				...commentList,
+				{
+					postId: parseInt(postId),
+					id: commentList.length + 1,
+					name: isLoggedIn.AdminInfo.email,
+					email: isLoggedIn.AdminInfo.email,
+					body: adminComment,
+				},
+			];
+			dispatch(setCommentList(tmpCommentList));
+		} else {
+			alert("can't post empty comment");
+		}
+	};
 
 	return (
 		<Layout>
@@ -56,24 +61,7 @@ const PostDetailPage = () => {
 			<div className="p-2 bg-gray-800 rounded">
 				<h4 className="font-semibold">Comments ({comments.length})</h4>
 				{comments.map((comment) => (
-					<div className="flex space-x-1 items-start my-4 justify-between">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							className="h-10 w-10 flex-grow-0"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-						>
-							<path
-								fillRule="evenodd"
-								d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-								clipRule="evenodd"
-							/>
-						</svg>
-						<div className="bg-gray-600 rounded-2xl text-left p-2 w-full">
-							<h5 className="font-semibold text-sm">{comment.email}</h5>
-							<p>{comment.body}</p>
-						</div>
-					</div>
+					<CommentCard comment={comment} key={comment.id} />
 				))}
 				{isLoggedIn.isLogIn ? (
 					<div className="flex space-x-3 mb-2">
@@ -86,7 +74,10 @@ const PostDetailPage = () => {
 							value={adminComment}
 							onChange={(e) => setAdminComment(e.target.value)}
 						/>
-						<button onClick={postComment} className="rounded-3xl text-sm font-semibold bg-green-600 p-2">
+						<button
+							onClick={postComment}
+							className="rounded-3xl text-sm font-semibold bg-green-600 p-2"
+						>
 							post
 						</button>
 					</div>
