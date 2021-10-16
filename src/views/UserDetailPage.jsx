@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouteMatch } from 'react-router';
+import { Link } from 'react-router-dom';
 import Layout from '../components/Layout';
 import UserProfileCard from '../components/UserProfileCard';
 
@@ -23,16 +24,20 @@ const UserDetailPage = () => {
 		});
     setPosts(postList.filter(post => post.userId === parseInt(id)))
     setAlbums(albumList.filter(album => album.userId === parseInt(id)))
-	}, [id]);
+	}, [albumList, id, postList, userList]);
 
 	return (
 		<Layout>
 			<div className="flex">
-				<div className="flex-grow-0 w-72">
+				<div className="flex-grow-0 w-80">
 					<UserProfileCard profile={profile} />
           <div className="mt-4 bg-white p-2 rounded text-black">
+            <h2 className="text-2xl font-semibold">Albums</h2>
             {albums.map(album => (
-              <div className="overflow-ellipsis">{album.title}</div>
+              <div className="my-2">
+                <div className="overflow-ellipsis">{album.title}</div>
+                <Link to={`/users/${profile.id}/albums/${album.id}`} className="bg-green-500 p-2 rounded text-xs text-white font-bold">See Photos</Link>
+              </div>
             ))}
           </div>
 				</div>

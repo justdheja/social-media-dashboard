@@ -9,7 +9,7 @@ import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setAlbumList, setPhotoList, setPostList, setUserList } from './actions';
 import UserDetailPage from './views/UserDetailPage';
-import Layout from './components/Layout';
+import AlbumDetailPage from './views/AlbumDetailPage';
 
 const App = () => {
 	const [loading, setLoading] = useState(false)
@@ -44,6 +44,7 @@ const App = () => {
 					<Route path="/album" exact component={AlbumPage} />
 					<Route path="/users" exact component={UsersPage} />
 					<Route path="/users/:id" exact component={UserDetailPage} />
+					<Route path="/users/:userId/albums/:albumId" exact component={AlbumDetailPage} />
 				</Router>
 			);
 		} else {
