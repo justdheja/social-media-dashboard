@@ -33,6 +33,8 @@ const HomePage = () => {
     }
     const tmpPostList = [...postList, newPost]
     dispatch(setPostList(tmpPostList))
+    setPostTitle('')
+    setPostBody('')
   }
 
 	return (
@@ -47,6 +49,7 @@ const HomePage = () => {
               name="title"
               id="title"
               className="rounded-2xl bg-gray-500 px-2 my-2"
+              value={postTitle}
               onChange={(e) => setPostTitle(e.target.value)}
               placeholder="write your title here"
             />
@@ -56,19 +59,20 @@ const HomePage = () => {
               cols="10"
               rows="10"
               className="rounded-2xl bg-gray-500 p-2 h-16 my-2"
+              value={postBody}
               onChange={(e) => setPostBody(e.target.value)}
               placeholder="write your body here"
             />
             <button onClick={createPost} className="bg-green-500 rounded-2xl px-2 w-14 text-center">Post</button>
           </div>
-          {adminPosts.length && (
+          {adminPosts.length ? (
             <div className="my-4">
               <h1 className="text-lg font-medium">Your Post(s)</h1>
               {adminPosts.map(post => (
                 <AdminPostCard post={post} profile={profile} />
               ))}
             </div>
-          )}
+          ) : null}
 				</>
 			) : (
 				<h2 className="text-xl">
