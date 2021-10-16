@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { logIn, logOut } from '../actions';
+import LogIn from './LogIn';
 
 const Navbar = () => {
   const isLoggedIn = useSelector(state => state.isLoggedIn)
@@ -51,14 +52,15 @@ const Navbar = () => {
 						>
 							Users
 						</NavLink>
-						{isLoggedIn ? (
-							<button className="bg-green-800 p-1 rounded m-auto" onClick={() => dispatch(logOut())}>
+						{isLoggedIn.isLogIn ? (
+							<button
+								className="bg-green-800 p-1 rounded m-auto"
+								onClick={() => dispatch(logOut())}
+							>
 								Log Out
 							</button>
 						) : (
-							<button className="bg-green-600 p-1 rounded m-auto shadow-lg" onClick={() => dispatch(logIn())}>
-								Log In
-							</button>
+							<LogIn />
 						)}
 					</div>
 				</div>

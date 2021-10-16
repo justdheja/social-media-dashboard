@@ -1,12 +1,16 @@
-export const logIn = () => {
+export const logIn = (email, password) => {
   return {
-		type: 'USER_LOG_IN',
+		type: 'ADMIN_LOG_IN',
+    payload: {
+      email,
+      password
+    }
 	};
 }
 
 export const logOut = () => {
   return {
-    type: "USER_LOG_OUT"
+    type: "ADMIN_LOG_OUT"
   }
 }
 

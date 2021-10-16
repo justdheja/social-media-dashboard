@@ -1,13 +1,22 @@
-export const UserLogInReducer = (state = false, action) => {
-  switch (action.type) {
-    case "USER_LOG_IN":
-      return true;  
-    case "USER_LOG_OUT":
-      return false;
-    default:
-      return state;
-  }
-}
+export const UserLogInReducer = (
+	state = { isLogIn: false, AdminInfo: {} },
+	action
+) => {
+	switch (action.type) {
+		case 'ADMIN_LOG_IN':
+			return {
+				isLogIn: true,
+				AdminInfo: action.payload,
+			};
+		case 'ADMIN_LOG_OUT':
+			return {
+				isLogIn: false,
+				AdminInfo: {},
+			};
+		default:
+			return state;
+	}
+};
 
 export const UserListReducer = (state = [], action) => {
   switch (action.type) {
