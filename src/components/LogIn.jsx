@@ -1,20 +1,35 @@
 import { Popover, Transition } from '@headlessui/react';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { logIn } from '../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { logIn, setUserList } from '../actions';
 
 const LogIn = () => {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const dispatch = useDispatch();
+	const userList = useSelector((state) => state.userList);
 
-  const signIn = () => {
-    if (username && password) {
-      dispatch(logIn(username, password))
-    } else {
-      alert("Username and Password can't be empty")
-    }
-  }
+	const signIn = () => {
+		if (username && password) {
+			dispatch(logIn(username, password));
+			const tmpUserList = [
+				...userList,
+				{
+					id: userList.length + 1,
+					name: username,
+					username,
+					email: username.includes('@') ? username : 'random@mail.co.id',
+					address: {},
+					phone: '01234567',
+					website: 'google.com',
+					company: {},
+				},
+			];
+			dispatch(setUserList(tmpUserList))
+		} else {
+			alert("Username and Password can't be empty");
+		}
+	};
 	return (
 		<Popover className="relative">
 			{({ open }) => (
@@ -60,13 +75,16 @@ const LogIn = () => {
 											Password
 										</label>
 										<input
-                      onChange={(e) => setPassword(e.target.value)}
+											onChange={(e) => setPassword(e.target.value)}
 											id="password"
 											type="password"
 											className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
 										/>
 									</div>
-									<button onClick={signIn} className="bg-green-500 mt-4 block text-center font-semibold cursor-pointer w-full p-1 rounded text-white">
+									<button
+										onClick={signIn}
+										className="bg-green-500 mt-4 block text-center font-semibold cursor-pointer w-full p-1 rounded text-white"
+									>
 										Log In
 									</button>
 								</div>

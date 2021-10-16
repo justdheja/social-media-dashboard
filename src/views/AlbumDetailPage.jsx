@@ -21,7 +21,6 @@ const AlbumDetailPage = () => {
     userList.map(user => user.id === parseInt(userId) ? setProfile(user) : '')
     albumList.map(album => album.id === parseInt(albumId) ? setAlbum(album) : '')
     setPhotos(photoList.filter(photo => photo.albumId === parseInt(albumId)))
-    console.log(profile, album, photos)
   }, [userId, albumId, userList, albumList, photoList])
   return (
     <Layout>
