@@ -44,37 +44,44 @@ const HomePage = () => {
 			{isLoggedIn.isLogIn ? (
 				<>
 					<h2 className="text-2xl mb-4">Hello {isLoggedIn.AdminInfo.email}</h2>
-          <div className="bg-gray-600 rounded p-2 flex flex-col">
-            <h3 className="font-semibold">Create Post</h3>
-            <input
-              type="text"
-              name="title"
-              id="title"
-              className="rounded-2xl bg-gray-500 px-2 my-2"
-              value={postTitle}
-              onChange={(e) => setPostTitle(e.target.value)}
-              placeholder="write your title here"
-            />
-            <textarea
-              name="body"
-              id=""
-              cols="10"
-              rows="10"
-              className="rounded-2xl bg-gray-500 p-2 h-16 my-2"
-              value={postBody}
-              onChange={(e) => setPostBody(e.target.value)}
-              placeholder="write your body here"
-            />
-            <button onClick={createPost} className="bg-green-500 rounded-2xl px-2 w-14 text-center">Post</button>
-          </div>
-          {postList.length ? (
-            <div className="my-4">
-              <h1 className="text-lg font-medium">Your Post(s)</h1>
-              {postList.filter(post => post.userId === profile.id).map(post => (
-                <AdminPostCard post={post} profile={profile} />
-              ))}
-            </div>
-          ) : null}
+					<div className="bg-gray-600 rounded p-2 flex flex-col">
+						<h3 className="font-semibold">Create Post</h3>
+						<input
+							type="text"
+							name="title"
+							id="title"
+							className="rounded-2xl bg-gray-500 px-2 my-2"
+							value={postTitle}
+							onChange={(e) => setPostTitle(e.target.value)}
+							placeholder="write your title here"
+						/>
+						<textarea
+							name="body"
+							id=""
+							cols="10"
+							rows="10"
+							className="rounded-2xl bg-gray-500 p-2 h-16 my-2"
+							value={postBody}
+							onChange={(e) => setPostBody(e.target.value)}
+							placeholder="write your body here"
+						/>
+						<button
+							onClick={createPost}
+							className="bg-green-500 rounded-2xl px-2 w-14 text-center"
+						>
+							Post
+						</button>
+					</div>
+					{postList.filter((post) => post.userId === profile.id).length ? (
+						<div className="my-4">
+							<h1 className="text-lg font-medium">Your Post(s)</h1>
+							{postList
+								.filter((post) => post.userId === profile.id)
+								.map((post) => (
+									<AdminPostCard post={post} profile={profile} />
+								))}
+						</div>
+					) : null}
 				</>
 			) : (
 				<h2 className="text-xl">
