@@ -9,7 +9,7 @@ const Layout = ({ children }) => {
 					{children}
 				</div>
 			</div>
-			<footer className="text-center p-2 w-full bg-gray-700">
+			<footer className="text-center p-2 w-full bg-gray-800">
 				<a href="http://github.com/justdheja/social-media-dashboard" target="_blank" className="underline text-blue-500" rel="noopener noreferrer">Github Repo</a>
 			</footer>
 		</div>
