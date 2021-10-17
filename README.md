@@ -1,6 +1,6 @@
 # Social Media Dashboard
 
-View Demo [Here](https://social-media-dashboard.vercel.app)
+View Demo [Here](https://socdash.vercel.app)
 
 Tech Stack:
 * [React with create-react-app](https://reactjs.org/)
