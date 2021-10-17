@@ -1,10 +1,7 @@
-export const logIn = (email, password) => {
+export const logIn = (adminInfo) => {
   return {
 		type: 'ADMIN_LOG_IN',
-    payload: {
-      email,
-      password
-    }
+    payload: adminInfo
 	};
 }
 

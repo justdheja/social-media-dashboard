@@ -11,30 +11,32 @@ const HomePage = () => {
 	const postList = useSelector((state) => state.postList);
 
   const [profile, setProfile] = useState({})
-  const [adminPosts, setAdminPosts] = useState([])
   const [postTitle, setPostTitle] = useState('');
 	const [postBody, setPostBody] = useState('');
 
   useEffect(() => {
     userList.forEach(user => {
-      if (user.username === isLoggedIn.AdminInfo.email) {
+      if (user.username === isLoggedIn.AdminInfo.username) {
         setProfile(user)
       }
     })
-    setAdminPosts(postList.filter(post => post.userId === profile.id))
-  }, [isLoggedIn.AdminInfo.email, postList, userList])
+  }, [userList])
 
   const createPost = () => {
-    const newPost = {
-      userId: profile.id,
-      id: postList.length + 1,
-      title: postTitle,
-      body: postBody
+    if (postTitle && postBody) {
+      const newPost = {
+        userId: profile.id,
+        id: postList.length + 1,
+        title: postTitle,
+        body: postBody
+      }
+      const tmpPostList = [...postList, newPost]
+      dispatch(setPostList(tmpPostList))
+      setPostTitle('')
+      setPostBody('')
+    } else {
+      alert("Title and Body can't be empty")
     }
-    const tmpPostList = [...postList, newPost]
-    dispatch(setPostList(tmpPostList))
-    setPostTitle('')
-    setPostBody('')
   }
 
 	return (
@@ -65,10 +67,10 @@ const HomePage = () => {
             />
             <button onClick={createPost} className="bg-green-500 rounded-2xl px-2 w-14 text-center">Post</button>
           </div>
-          {adminPosts.length ? (
+          {postList.length ? (
             <div className="my-4">
               <h1 className="text-lg font-medium">Your Post(s)</h1>
-              {adminPosts.map(post => (
+              {postList.filter(post => post.userId === profile.id).map(post => (
                 <AdminPostCard post={post} profile={profile} />
               ))}
             </div>

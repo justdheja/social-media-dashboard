@@ -17,25 +17,27 @@ const App = () => {
 	useEffect(async () => {
 		setLoading(true)
 		
-		await axios.get('https://jsonplaceholder.typicode.com/users')
-			.then((res) => dispatch(setUserList(res.data)));
+		await axios
+			.get('https://jsonplaceholder.typicode.com/users')
+			.then((res) => dispatch(setUserList(res.data)))
+			.catch((err) => alert(err));
 
 		await axios
 			.get('https://jsonplaceholder.typicode.com/posts')
 			.then((res) => dispatch(setPostList(res.data)))
-			.catch((err) => console.log(err));
+			.catch((err) => alert(err));
 
 		await axios.get('https://jsonplaceholder.typicode.com/albums')
 			.then((res) => dispatch(setAlbumList(res.data)))
-			.catch(err => console.log(err))
+			.catch(err => alert(err))
 
 		await axios.get('https://jsonplaceholder.typicode.com/photos')
 			.then(res => dispatch(setPhotoList(res.data)))
-			.catch(err => console.log(err))
+			.catch(err => alert(err))
 
 		await axios.get('https://jsonplaceholder.typicode.com/comments')
 			.then(res => dispatch(setCommentList(res.data)))
-			.catch(err => console.log(err))
+			.catch(err => alert(err))
 
 		setLoading(false)
 	}, [])

@@ -11,21 +11,32 @@ const LogIn = () => {
 
 	const signIn = () => {
 		if (username && password) {
-			dispatch(logIn(username, password));
-			const tmpUserList = [
-				...userList,
-				{
-					id: userList.length + 1,
-					name: username,
-					username,
-					email: username.includes('@') ? username : 'random@mail.co.id',
-					address: {},
-					phone: '01234567',
-					website: 'google.com',
-					company: {},
-				},
-			];
-			dispatch(setUserList(tmpUserList))
+			const adminInfo = {
+				name: username,
+				username,
+				email: username.includes('@') ? username : 'random@mail.co.id',
+				address: {},
+				phone: '01234567',
+				website: 'google.com',
+				company: {},
+			};
+			dispatch(logIn(adminInfo));
+			if (!userList.some(user => user.username === adminInfo.username)) {
+				const tmpUserList = [
+					...userList,
+					{
+						id: userList.length + 1,
+						name: username,
+						username,
+						email: username.includes('@') ? username : 'random@mail.co.id',
+						address: {},
+						phone: '01234567',
+						website: 'google.com',
+						company: {},
+					},
+				];
+				dispatch(setUserList(tmpUserList))
+			}
 		} else {
 			alert("Username and Password can't be empty");
 		}
